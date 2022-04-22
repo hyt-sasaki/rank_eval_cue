@@ -21,7 +21,7 @@ requests: [ for q in _queries {
 }]
 
 metric: #RankEval.metric
-metric: recall: {// 検索結果上位5件のうち, ratingが1以上の文書が返ってくるか
-	k:                          5
-	rerevant_rating_threashold: 1
+metric: recall: {// 検索結果上位1件のうち, ratingが1以上の文書が返ってくるか
+	k:                         1
+	relevant_rating_threshold: 1
 }
