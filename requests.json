@@ -1,0 +1,24 @@
+{
+  "requests": [
+    {
+      "id": "amsterdam_query",                                  
+      "request": {                                              
+          "query": { "match": { "text": "amsterdam" } }
+      },
+      "ratings": [                                              
+        { "_index": "my-index-000001", "_id": "doc1", "rating": 0 },
+        { "_index": "my-index-000001", "_id": "doc2", "rating": 3 },
+        { "_index": "my-index-000001", "_id": "doc3", "rating": 1 }
+      ]
+    },
+    {
+      "id": "berlin_query",
+      "request": {
+        "query": { "match": { "text": "berlin" } }
+      },
+      "ratings": [
+        { "_index": "my-index-000001", "_id": "doc1", "rating": 1 }
+      ]
+    }
+  ]
+}
