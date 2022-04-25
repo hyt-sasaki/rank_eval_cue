@@ -19,7 +19,19 @@ package eval_request
 	// request部分の生成
 	output: requests: [ for q in input.queryWords {
 		_query: {
-			match: (input.fieldName): q
+			bool: should: [{
+				multi_match: {
+					query: q
+					fields: ["\(input.fieldName).ja^1"]
+					type: "phrase"
+				}
+			}, {
+				multi_match: {
+					query: q
+					fields: ["\(input.fieldName).ngram^1"]
+					type: "phrase"
+				}
+			}]
 		}
 		_answer: {
 			"_index": input.index
