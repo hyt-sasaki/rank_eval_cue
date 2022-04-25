@@ -6,7 +6,7 @@ import (
 	"tool/cli"
 	"encoding/json"
 	"strings"
-    "list"
+	"list"
 
 	"com.github.hytssk.rankeval/bulk:bulk_request"
 )
@@ -65,7 +65,7 @@ command: generateBulkRequest: {
 
 	elasticsearchHost: *"http://localhost:9200" | string @tag(host)
 	task: generateScript: file.Create & {
-        _deps: [task.mkdir.path, task.generateRequestJson.contents]
+		_deps: [task.mkdir.path, task.generateRequestJson.contents]
 		filename: "\(task.mkdir.path)/bulk_insert.sh"
 		contents: #"""
 			curl -s -w %{http_code} -H 'Content-Type: application/x-ndjson' \
