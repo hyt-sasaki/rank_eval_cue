@@ -5,6 +5,7 @@ import (
 	"tool/cli"
 	"encoding/json"
 	"strings"
+    "list"
 
 	"com.github.hytssk.rankeval/eval:eval_request"
 )
@@ -15,11 +16,12 @@ command: generateEvalRequest: {
 		filename: string | *"./assets/example.txt" @tag(filename)
 		contents: string
 	}
+    _array: strings.Split(task.read.contents, "\n")
 
 	// データの変換
 	data: eval_request.#Convert & {
 		input: {
-			queryWords: strings.Split(task.read.contents, "\n")
+			queryWords: list.Slice(_array, 0, len(_array)-1)
 			fieldName:  "title"
 			index:      string | *"test-index" @tag(index)
 			k:          >=1 | *1               @tag(k,type=int)

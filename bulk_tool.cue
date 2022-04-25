@@ -6,6 +6,7 @@ import (
 	"tool/cli"
 	"encoding/json"
 	"strings"
+    "list"
 
 	"com.github.hytssk.rankeval/bulk:bulk_request"
 )
@@ -42,7 +43,7 @@ command: generateBulkRequest: {
 	// データの変換
 	data: bulk_request.#Convert & {
 		input: {
-			array:     _array
+			array:     list.Slice(_array, 0, len(_array)-1)
 			index:     string | *"test-index" @tag(index)
 			fieldName: "title"
 		}
