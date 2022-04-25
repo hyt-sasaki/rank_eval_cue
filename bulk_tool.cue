@@ -64,6 +64,7 @@ command: generateBulkRequest: {
 
 	elasticsearchHost: *"http://localhost:9200" | string @tag(host)
 	task: generateScript: file.Create & {
+        _deps: [task.mkdir.path, task.generateRequestJson.contents]
 		filename: "\(task.mkdir.path)/bulk_insert.sh"
 		contents: #"""
 			curl -s -w %{http_code} -H 'Content-Type: application/x-ndjson' \
