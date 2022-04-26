@@ -12,7 +12,7 @@ package eval_request
 	output: #RankEval
 
 	// metricの指定
-	output: metric: recall: {
+	output: metric: mean_reciprocal_rank: {
 		k:                         input.k
 		relevant_rating_threshold: 1
 	}
@@ -23,13 +23,13 @@ package eval_request
 				multi_match: {
 					query: q
 					fields: ["\(input.fieldName).ja^1"]
-					type: "phrase"
+					type: "most_fields"
 				}
 			}, {
 				multi_match: {
 					query: q
 					fields: ["\(input.fieldName).ngram^1"]
-					type: "phrase"
+					type: "most_fields"
 				}
 			}]
 		}
